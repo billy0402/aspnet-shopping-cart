@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -38,6 +38,38 @@ namespace AspnetShoppingCart.Controllers
             Session["Member"] = member;
             // 執行 Home 控制器的 Index 動作方法
             return RedirectToAction("Index", "Home");
+        }
+
+        // GET: Auth/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Auth/Register
+        [HttpPost]
+        public ActionResult Register(Member data)
+        {
+            // 若模型沒有通過驗證則顯示目前的 View
+            if (ModelState.IsValid == false)
+            {
+                return View();
+            }
+
+            // 依帳密取得會員並指定給 member
+            var member = db.Member.Where(m => m.UserId == data.UserId).FirstOrDefault();
+            // 若 member 為 null，表示會員未註冊
+            if (member != null)
+            {
+                ViewBag.Message = "此帳號已有人使用";
+                return View();
+            }
+
+            // 將會員記錄新增到 Member 資料表
+            db.Member.Add(data);
+            db.SaveChanges();
+            // 執行 Auth 控制器的 Login 動作方法
+            return RedirectToAction("Login");
         }
     }
 }
