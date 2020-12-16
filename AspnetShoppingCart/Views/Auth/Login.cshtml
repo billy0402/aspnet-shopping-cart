@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "會員登入";
+}
+
+<h2>會員登入</h2>
+
+<form action="@Url.Action("Login")" method="post">
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <span class="control-label col-md-2">帳號</span>
+            <div class="col-md-10">
+                <input type="text" id="userId" class="form-control" name="userId" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-2">密碼</span>
+            <div class="col-md-10">
+                <input type="text" id="password" class="form-control" name="password" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="登入" />
+                <p style="color:red">@ViewBag.Message</p>
+            </span>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("返回首頁", "Index", "Home")
+</div>
