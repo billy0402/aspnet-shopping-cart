@@ -40,6 +40,15 @@ namespace AspnetShoppingCart.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // GET: Auth/Logout
+        public ActionResult Logout()
+        {
+            // 清除 Session 變數
+            Session.Clear();
+            // 執行 Home 控制器的 Index 動作方法
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: Auth/Register
         public ActionResult Register()
         {
