@@ -65,5 +65,18 @@ namespace AspnetShoppingCart.Controllers
             // 執行 SoppingCart 控制器的 Index 動作方法
             return RedirectToAction("Index");
         }
+
+        // GET: ShoppingCart/Delete
+        public ActionResult Delete(int id)
+        {
+            // 從 id 找出 要刪除購物車狀態的產品
+            var orderDetail = db.OrderDetail.Where(m => m.Id == id).FirstOrDefault();
+            // 刪除購物車狀態的產品
+            db.OrderDetail.Remove(orderDetail);
+            db.SaveChanges();
+
+            // 執行 SoppingCart 控制器的 Index 動作方法
+            return RedirectToAction("Index");
+        }
     }
 }
