@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AspnetShoppingCart.Models.Product>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    @foreach (var Item in Model)
+    {
+        <div class="col-lg-4">
+            <div class="thumbtail">
+                <img src="~/Images/@Item.Image" style="width:70%" />
+                <div class="caption">
+                    <h2>@Item.Name</h2>
+                    <p>單價: @Item.Price</p>
+                    @if (Session["Member"] == null)
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <p>
+                            <a class="btn btn-primary" href="@Url.Action("Add", "ShoppingCart")?PId=@Item.PId">
+                                加入購物車
+                            </a>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
