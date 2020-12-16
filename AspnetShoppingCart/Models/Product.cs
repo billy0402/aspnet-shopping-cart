@@ -11,13 +11,22 @@ namespace AspnetShoppingCart.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Product
     {
         public int Id { get; set; }
+
+        [DisplayName("產品編號")]
         public string PId { get; set; }
+
+        [DisplayName("品茗")]
         public string Name { get; set; }
+
+        [DisplayName("單價")]
         public Nullable<int> Price { get; set; }
+
+        [DisplayName("圖示")]
         public string Image { get; set; }
     }
 }
