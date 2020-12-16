@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +25,17 @@ namespace AspnetShoppingCart.Controllers
 
             // 指定 Index.cshtml 套用 _LayoutMember.cshtml，View 使用 orders
             return View("Index", "_LayoutMember", orders);
+        }
+
+        // GET: Order/Detail
+        public ActionResult Detail(string orderGuid)
+        {
+            // 根據 orderGuid 找出和訂單主檔關聯的訂單明細，並指定給 orderDetails
+            var orderDetails = db.OrderDetail.Where(m => m.OrderGuid == orderGuid).ToList();
+
+
+            // 指定 Detail.cshtml 套用 _LayoutMember.cshtml，View 使用 orderDetails
+            return View("Detail", "_LayoutMember", orderDetails);
         }
 
         public ActionResult Add(string receiver, string email, string address)
