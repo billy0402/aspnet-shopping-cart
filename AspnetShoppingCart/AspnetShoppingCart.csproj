@@ -101,6 +101,9 @@
       <DependentUpon>ShoppingCart.mdf</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Images\iphone8.jpg" />
+    <Content Include="Images\ps4.jpg" />
+    <Content Include="Images\xboxone.jpg" />
     <Content Include="Models\ShoppingCartModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ShoppingCartModel.Context.cs</LastGenOutput>
