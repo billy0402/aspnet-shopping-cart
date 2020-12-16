@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,10 +13,18 @@ namespace AspnetShoppingCart.Controllers
         // 建立可存取 ShoppingCart.mdf 資料庫的 ShoppingCartEntities 類別物件 db
         ShoppingCartEntities db = new ShoppingCartEntities();
 
-        // GET: Order
+        // GET: Order/Index
         public ActionResult Index()
         {
-            return View();
+            // 找出會員帳號並指並給 userId
+            string userId = (Session["Member"] as Member).UserId;
+
+            // 找出目前會員的所有訂單主檔紀錄並依照 Date 進行遞增排序
+            // 將查詢結果指定給 orders
+            var orders = db.Order.Where(m => m.UserId == userId).OrderByDescending(m => m.Date).ToList();
+
+            // 指定 Index.cshtml 套用 _LayoutMember.cshtml，View 使用 orders
+            return View("Index", "_LayoutMember", orders);
         }
 
         public ActionResult Add(string receiver, string email, string address)
